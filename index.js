@@ -10,11 +10,18 @@ fs.readFile(process.argv[2], function (err, html) {
 
   $('.six.columns table tbody tr').each(function(i, elem) {
     var data = $(elem),
-        score = data.children('.zentriert.hauptlink').text().trim();
+        home = data.children('.text-right.no-border-rechts.hauptlink').text(),
+        away = data.children('.no-border-links.hauptlink').text(),
+        posRegex = /\((\d+).\)/g,
+        score = data.children('.zentriert.hauptlink').text().trim(),
+        homePos = posRegex.exec(home) || '',
+        awayPos = posRegex.exec(away) || '';
 
     matches[i] = {};
-    matches[i].home = data.children('.text-right.no-border-rechts.hauptlink').text();
-    matches[i].away = data.children('.no-border-links.hauptlink').text();
+    matches[i].home = home.replace(posRegex, '').trim();
+    matches[i].away = away.replace(posRegex, '').trim();
+    matches[i].home_pos = homePos[1];
+    matches[i].away_pos = awayPos[1];
     matches[i].home_score = score.substr(0, score.indexOf(':'));
     matches[i].away_score = score.substr(score.indexOf(':') + 1);
   });

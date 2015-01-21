@@ -3,4 +3,4 @@
 
 ## Usage
 
-Just run 'sh run.sh' in terminal.
+Just run 'sh main.sh' in terminal.
