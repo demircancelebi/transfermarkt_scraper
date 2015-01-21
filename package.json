@@ -1,5 +1,5 @@
 {
-  "name": "footballscraper",
+  "name": "transfermarkt-scraper",
   "version": "0.0.1",
   "description": "Transfermarkt Scraper",
   "main": "index.js",
